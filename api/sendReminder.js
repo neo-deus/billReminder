@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const express = require('express');
+const app = express();
 
 // Replace with your actual MongoDB URI
 const dbUri = "mongodb+srv://arpande:zmxncbv%40123@cluster0.nhcw4dm.mongodb.net/Reminder?retryWrites=true&w=majority";
@@ -24,29 +26,36 @@ const reminderSchema = new mongoose.Schema({
 
 const Reminder = mongoose.model('Reminder', reminderSchema);
 
-module.exports = async (req, res) => {
-  if (req.method === 'POST') {
-    // Ensure the request body is parsed
-    if (!req.body) {
-      return res.status(400).json({ error: 'Invalid request body' });
-    }
+// Middleware to parse JSON
+app.use(express.json());
 
-    const { email, reminderDateTime, billName, amount } = req.body;
+app.post('/reminder', async (req, res) => {
+  const { email, reminderDateTime, billName, amount } = req.body;
 
-    // Validate input data
-    if (!email || !reminderDateTime || !billName || amount === undefined) {
-      return res.status(400).json({ error: 'All fields are required' });
-    }
-
-    try {
-      const reminder = new Reminder({ email, reminderDateTime, billName, amount });
-      await reminder.save();
-      return res.status(200).json({ msg: 'Reminder saved successfully' });
-    } catch (error) {
-      console.error('Error saving reminder:', error);
-      return res.status(500).json({ error: 'Failed to save the reminder' });
-    }
-  } else {
-    res.status(405).json({ error: 'Method not allowed' });
+  // Validate input data
+  if (!email || !reminderDateTime || !billName || amount === undefined) {
+    return res.status(400).json({ error: 'All fields are required' });
   }
-};
+
+  try {
+    // Parse reminderDateTime as a Date object
+    const parsedReminderDateTime = new Date(reminderDateTime);
+    const reminder = new Reminder({
+      email,
+      reminderDateTime: parsedReminderDateTime,
+      billName,
+      amount,
+    });
+
+    await reminder.save();
+    return res.status(200).json({ msg: 'Reminder saved successfully' });
+  } catch (error) {
+    console.error('Error saving reminder:', error);
+    return res.status(500).json({ error: 'Failed to save the reminder' });
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
