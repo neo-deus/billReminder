@@ -1,14 +1,22 @@
 {
     "version": 2,
-    "functions": {
-      "api/sendReminder.js": {
-        "memory": 512,
-        "methods": ["POST"]
+    "builds": [
+        {
+          "src": "api/*.js",
+          "use": "@vercel/node"
+        }
+      ],
+    "routes": [
+      {
+        "src": "/sendReminder",
+        "methods": ["POST"],
+        "dest": "/api/sendReminder.js"
       },
-      "api/reminder.js": {
-        "memory": 512,
-        "methods": ["GET"]
+      {
+        "src": "/reminder",
+        "methods": ["GET"],
+        "dest": "/api/reminder.js"
       }
-    }
+    ]
   }
   
