@@ -12,10 +12,7 @@
             ],
             "dest": "/api/reminder.js"
         }
-    ],
-    "headers": {
-        "Access-Control-Allow-Origin": "*"
-    }
+    ]
 }
 
   
