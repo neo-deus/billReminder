@@ -7,6 +7,7 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const reminderSchema = new mongoose.Schema({
     email: String,
     reminderDateTime: Date,
+    actualDueDate:Date,
     billName: String,
     amount:Number
   });
@@ -35,7 +36,7 @@ const reminderSchema = new mongoose.Schema({
               from: "ritushreedas20027@gmail.com",
               to: reminder.email,
               subject: 'FinanceFolio',
-              text: `Hi there! Just a reminder that your ${reminder.billName} bill of amount ${reminder.amount} is due as on ${reminder.reminderDateTime}.`,
+              text: `Hi there! Just a reminder that your ${reminder.billName} bill of amount ${reminder.amount} is due as on ${reminder.actualDueDate}.`,
             };
             await transporter.sendMail(mailOptions);
             console.log(`Email sent to ${reminder.email}`);
@@ -58,10 +59,10 @@ const reminderSchema = new mongoose.Schema({
     }
   }else{
 
-    const { email, reminderDateTime, billName, amount } = req.body;
+    const { email, reminderDateTime,actualDueDate, billName, amount } = req.body;
 
     try {
-      const reminder = new Reminder({ email, reminderDateTime, billName,amount } );
+      const reminder = new Reminder({ email, reminderDateTime,actualDueDate, billName,amount } );
       await reminder.save();
       return res.send({ msg: 'Reminder saved successfully',email,reminderDateTime} );
     } catch (error) {
