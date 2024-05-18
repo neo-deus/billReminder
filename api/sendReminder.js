@@ -16,7 +16,9 @@ const Reminder = mongoose.model('ReminderSchema', reminderSchema);
 
 module.exports= async (req, res) => {
   if (req.method === 'POST') {
-    const { email, reminderDateTime, billName,amount } = req.body;
+    const body = JSON.parse(req.body);
+
+    const { email, reminderDateTime, billName, amount } = body;
     try {
       const reminder = new Reminder({ email, reminderDateTime, billName,amount } );
       await reminder.save();
