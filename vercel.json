@@ -1,10 +1,13 @@
 {
+    "version": 2,
     "functions": {
       "api/sendReminder.js": {
-        "memory": 512
+        "memory": 512,
+        "methods": ["POST"]
       },
       "api/reminder.js": {
-        "memory": 512
+        "memory": 512,
+        "methods": ["GET"]
       }
     }
   }
