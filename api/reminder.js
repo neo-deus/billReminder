@@ -34,7 +34,7 @@ const reminderSchema = new mongoose.Schema({
   
     const now = new Date(new Date().toISOString());
     try {
-      const reminders = await Reminder.find({ reminderDateTime: { $gte: now } });
+      const reminders = await Reminder.find({ reminderDateTime: { $lte: now } });
       if (reminders.length > 0) {
         // Map each reminder to a promise of sending an email and deleting the reminder
         const operations = reminders.map(reminder => 
@@ -54,7 +54,7 @@ const reminderSchema = new mongoose.Schema({
         
         // Wait for all operations to complete
         await Promise.all(operations);
-        return res.status(200).json({ msg: 'Reminders processed successfully',headers });
+        return res.status(200).json({ msg: 'Reminders processed successfully' });
       } else {
         console.log('No reminders match the current date and time.');
         return res.status(200).json({ msg: 'No reminders to process' });
