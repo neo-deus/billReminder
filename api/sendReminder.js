@@ -12,7 +12,7 @@ const reminderSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
 });
 
-const Reminder = mongoose.model('ReminderSchema', reminderSchema);
+const Reminder = mongoose.model('ReminderSchemas', reminderSchema);
 
 module.exports= async (req, res) => {
   if (req.method === 'POST') {
