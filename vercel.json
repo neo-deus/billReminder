@@ -1,9 +1,9 @@
 {
     "routes": [
       {
-        "src": "/sendReminder",
+        "src": "/sendreminder",
         "methods": ["POST"],
-        "dest": "/api/sendReminder.js"
+        "dest": "/api/sendreminder.js"
       },
       {
         "src": "/reminder",
