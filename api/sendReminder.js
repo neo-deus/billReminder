@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Replace with your actual MongoDB URI
-const dbUri = "mongodb://admin-ritushree:Mo4gS9UnLrFY1J0Y@ac-m3eu5ek-shard-00-00.s6k4ce2.mongodb.net:27017,ac-m3eu5ek-shard-00-01.s6k4ce2.mongodb.net:27017,ac-m3eu5ek-shard-00-02.s6k4ce2.mongodb.net:27017/Nodemailer?ssl=true&replicaSet=atlas-14fxtv-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0;
+const dbUri = "mongodb+srv://admin-ritushree:Mo4gS9UnLrFY1J0Y@cluster0.s6k4ce2.mongodb.net/Nodemailer";
 
 let isConnected = false;
 
