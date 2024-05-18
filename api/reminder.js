@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 // Replace with your actual MongoDB URI
-const dbUri = "mongodb+srv://admin-ritushree:Mo4gS9UnLrFY1J0Y@cluster0.s6k4ce2.mongodb.net/Nodemailer";
+const dbUri = "mongodb+srv://admin-ritushree:Mo4gS9UnLrFY1J0Y@cluster0.s6k4ce2.mongodb.net/FINANCE";
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const reminderSchema = new mongoose.Schema({
@@ -23,9 +23,12 @@ const reminderSchema = new mongoose.Schema({
 
   module.exports = async (req, res) => {
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    const headers = {
+      'Access-Control-Allow-Origin': '*',  // allows access from any domain
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
+
     if(req.method === 'GET'){
 
   
@@ -51,7 +54,7 @@ const reminderSchema = new mongoose.Schema({
         
         // Wait for all operations to complete
         await Promise.all(operations);
-        return res.status(200).json({ msg: 'Reminders processed successfully' });
+        return res.status(200).json({ msg: 'Reminders processed successfully',headers });
       } else {
         console.log('No reminders match the current date and time.');
         return res.status(200).json({ msg: 'No reminders to process' });
@@ -68,7 +71,7 @@ const reminderSchema = new mongoose.Schema({
     try {
       const reminder = new Reminder({ email, reminderDateTime,actualDueDate, billName,amount } );
       await reminder.save();
-      return res.send({ msg: 'Reminder saved successfully',email,reminderDateTime} );
+      return res.send({ msg: 'Reminder saved successfully',headers} );
     } catch (error) {
       console.error('Error saving reminder:', error);
       return res.status(500).json({ error: 'Failed to save the reminder' });
