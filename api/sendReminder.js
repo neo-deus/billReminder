@@ -19,10 +19,11 @@ module.exports= async (req, res) => {
     const body = JSON.parse(req.body);
 
     const { email, reminderDateTime, billName, amount } = body;
+
     try {
-      const reminder = new Reminder({ email, reminderDateTime, billName,amount } );
-      await reminder.save();
-      return res.status(200).json({ msg: 'Reminder saved successfully' });
+      // const reminder = new Reminder({ email, reminderDateTime, billName,amount } );
+      // await reminder.save();
+      return res.status(200).json({ msg: 'Reminder saved successfully',body });
     } catch (error) {
       console.error('Error saving reminder:', error);
       return res.status(500).json({ error: 'Failed to save the reminder' });
