@@ -11,7 +11,7 @@ const reminderSchema = new mongoose.Schema({
     billName: String,
     amount:Number
   });
-  const Reminder = mongoose.model('ReminderSchemas', reminderSchema);
+  const Reminder = mongoose.model('Reminder', reminderSchema);
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
