@@ -34,7 +34,7 @@ const reminderSchema = new mongoose.Schema({
   
     const now = new Date(new Date().toISOString());
     try {
-      const reminders = await Reminder.find({ reminderDateTime: { $lte: now } });
+      const reminders = await Reminder.find({ reminderDateTime: { $gte: now } });
       if (reminders.length > 0) {
         // Map each reminder to a promise of sending an email and deleting the reminder
         const operations = reminders.map(reminder => 
