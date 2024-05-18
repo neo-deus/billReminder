@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Replace with your actual MongoDB URI
-const dbUri = "mongodb+srv://arpande:zmxncbv%40123@cluster0.nhcw4dm.mongodb.net/Reminder?retryWrites=true&w=majority";
+const dbUri = "mongodb+srv://admin-ritushree:Mo4gS9UnLrFY1J0Y@cluster0.s6k4ce2.mongodb.net/Nodemailer";
 
 // Connect to MongoDB
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
