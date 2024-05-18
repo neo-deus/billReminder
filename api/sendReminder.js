@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Replace with your actual MongoDB URI
-const dbUri = "mongodb://arpande:zmxncbv%40123@ac-dhs1i5d-shard-00-00.nhcw4dm.mongodb.net:27017,ac-dhs1i5d-shard-00-01.nhcw4dm.mongodb.net:27017,ac-dhs1i5d-shard-00-02.nhcw4dm.mongodb.net:27017/Reminder?ssl=true&replicaSet=atlas-tzfa6f-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0";
+const dbUri = "mongodb+srv://arpande:zmxncbv%40123@cluster0.nhcw4dm.mongodb.net/Reminder?retryWrites=true&w=majority";
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Reminder Schema
