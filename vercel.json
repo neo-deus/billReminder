@@ -1,15 +1,17 @@
 {
-    "routes": [
-      {
-        "src": "/sendReminder",
-        "methods": ["POST"],
-        "dest": "/api/sendReminder.js"
-      },
-      {
-        "src": "/reminder",
-        "methods": ["GET"],
-        "dest": "/api/reminder.js"
-      }
+    "routes":[
+        {
+            "src":"/",
+            "dest":"/api/reminder.js"
+        },
+        {
+            "src":"/reminder",
+            "methods":[
+                "POST",
+                "GET"
+            ],
+            "dest":"/api/reminder.js"
+        }
     ]
-  }
+}
   

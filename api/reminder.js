@@ -21,6 +21,9 @@ const reminderSchema = new mongoose.Schema({
   });
 
   module.exports = async (req, res) => {
+    if(req.method === 'GET'){
+
+  
     const now = new Date(new Date().toISOString());
     try {
       const reminders = await Reminder.find({ reminderDateTime: { $lte: now } });
@@ -53,4 +56,18 @@ const reminderSchema = new mongoose.Schema({
       console.error('Error processing reminders:', error);
       return res.status(500).json({ error: 'Failed to process reminders' });
     }
+  }else{
+    const body = JSON.parse(req.body);
+
+    const { email, reminderDateTime, billName, amount } = body;
+
+    try {
+      const reminder = new Reminder({ email, reminderDateTime, billName,amount } );
+      await reminder.save();
+      return res.status(200).json({ msg: 'Reminder saved successfully',body });
+    } catch (error) {
+      console.error('Error saving reminder:', error);
+      return res.status(500).json({ error: 'Failed to save the reminder' });
+    }
   }
+}
