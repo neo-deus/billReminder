@@ -63,7 +63,7 @@ const reminderSchema = new mongoose.Schema({
     try {
       // const reminder = new Reminder({ email, reminderDateTime, billName,amount } );
       // await reminder.save();
-      return res.send({ msg: 'Reminder saved successfully'},email,reminderDateTime );
+      return res.send({ msg: 'Reminder saved successfully',email,reminderDateTime} );
     } catch (error) {
       console.error('Error saving reminder:', error);
       return res.status(500).json({ error: 'Failed to save the reminder' });
