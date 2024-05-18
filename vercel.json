@@ -1,0 +1,11 @@
+{
+    "functions": {
+      "api/sendReminder.js": {
+        "memory": 512
+      },
+      "api/reminder.js": {
+        "memory": 512
+      }
+    }
+  }
+  
