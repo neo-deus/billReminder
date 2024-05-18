@@ -1,17 +1,21 @@
 {
-    "routes":[
+    "routes": [
         {
-            "src":"/",
-            "dest":"/api/reminder.js"
+            "src": "/",
+            "dest": "/api/reminder.js"
         },
         {
-            "src":"/reminder",
-            "methods":[
+            "src": "/reminder",
+            "methods": [
                 "POST",
                 "GET"
             ],
-            "dest":"/api/reminder.js"
+            "dest": "/api/reminder.js"
         }
-    ]
+    ],
+    "headers": {
+        "Access-Control-Allow-Origin": "*"
+    }
 }
+
   
